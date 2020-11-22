@@ -1,0 +1,17 @@
+﻿Equipo,Puntos,PJ,PG,PE,PP,GF,GC,GD
+Aucas,8,4,2,2,0,9,5,4
+Barcelona,10,4,3,1,0,7,2,5
+D. Cuenca,7,4,2,1,1,3,6,-3
+Delfín,5,4,1,2,1,7,6,1
+El Nacional,4,4,1,1,2,2,5,-3
+Emelec,5,4,1,2,1,2,2,0
+Guayaquil City,8,4,2,2,0,5,3,2
+Ind. del Valle,3,4,1,0,3,7,10,-3
+LDU Quito,7,4,2,1,1,10,5,5
+Liga (P),3,4,1,0,3,6,8,-2
+Macará,5,4,1,2,1,3,3,0
+Mushuc Runa,3,4,1,0,3,5,9,-4
+Olmedo,3,4,1,0,3,4,6,-2
+Orense,5,4,1,2,1,4,4,0
+Técnico Univ.,4,4,1,1,2,3,5,-2
+U.Católica,7,4,2,1,1,6,4,2
