@@ -109,6 +109,8 @@
     		syscall
     		
 		j menu
+		
+		
 	tresMejores:
 	
 		add $t6, $zero, 10 # codigo ascii de salto de linea
@@ -118,6 +120,7 @@
 		li $t5 , 0 #coincidencias 
 		
 		jal readFile
+		
 		loop1:
 		lb $t4 , buffer($t1)
 		beq $t4, $t6, count
