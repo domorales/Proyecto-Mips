@@ -1,5 +1,5 @@
 .data 
-	infomenu: .asciiz "MENU: \n 1.Tabla OrdenadaTabla.\n 2.Ingreso de partidos.\n 3.Mostrar los 3 mejores.\n 4.Salir\n"
+	infomenu: .asciiz "MENU: \n 1.Tabla Ordenada.\n 2.Ingreso de partidos.\n 3.Mostrar los 3 mejores.\n 4.Salir\n"
 	msgopcion: .asciiz "Ingrese opción: "
 	archivo: .asciiz "TablaIni.txt"
 	buffer: .space 1024
@@ -18,6 +18,10 @@
 		li $s2, 50 # 49 codigo ascii de 2
 		li $s3, 51 # 49 codigo ascii de 3
 		li $s4, 52 # 49 codigo ascii de 4
+		
+		
+		
+
 		
 		loop:
 			#Mostrar menu
@@ -47,6 +51,7 @@
 				
 				
 			mostrarTresMej:
+				
 				jal tresMejores
 				
 				
@@ -79,9 +84,11 @@
 		la $a1,buffer 	# The buffer that holds the string of the WHOLE file
 		la $a2,1024		# hardcoded buffer length
 		syscall
-			
-	
-		
+		#Close the file
+    		li $v0, 16         		# close_file syscall code
+    		move $a0,$s0      		# file descriptor to close
+    		syscall	
+
 		jr $ra	
 	
 	# funcion leer tabla
@@ -111,16 +118,17 @@
 		j menu
 		
 		
-	tresMejores:
 	
-		add $t6, $zero, 10 # codigo ascii de salto de linea
-    		li $s2 , 4 #variable de control 
-		li $t0 , 0 # contador
-		li $t1 ,-2 # desplazamiento
-		li $t5 , 0 #coincidencias 
 		
+	tresMejores:
 		jal readFile
-		
+    	
+    		add $t6, $zero, 10 # codigo ascii de salto de linea
+    		li $s6 , 4 #variable de control 
+		li $t0 , 0 # contador
+		li $t1 , -2 # desplazamiento
+		li $t5 , 0 #coincidencias 
+
 		loop1:
 		lb $t4 , buffer($t1)
 		beq $t4, $t6, count
@@ -130,17 +138,24 @@
 		count:
 		addi $t1,$t1,1
 		addi $t5 , $t5 , 1
-		beq $t5 , $s2 , exit
+		beq $t5 , $s6 , exit
 		j loop1
-		
 		exit:
+	
+		li $v0,13           	# open_file syscall code = 13
+    		la $a0,archivo    	# get the file name
+    		li $a1,0           	# file flag = read (0)
+    		syscall
+    		move $s0,$v0        	# save the file descriptor. $s0 = file
+	
 		#read the file
 		li $v0, 14		# read_file syscall code = 14
 		move $a0,$s0		# file descriptor
-		la $a1,bufferWord	# The buffer that holds the string of the WHOLE file
-		move $a2, $t0	# hardcoded buffer length
+		la $a1,bufferWord 	# The buffer that holds the string of the WHOLE file
+		addi $t0,$t0,1
+		move $a2,$t0	# hardcoded buffer length
 		syscall
-		
+	
 		# print whats in the file
 		li $v0, 4		# read_string syscall code = 4
 		la $a0,bufferWord
