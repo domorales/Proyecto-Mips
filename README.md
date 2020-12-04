@@ -1,4 +1,4 @@
-# Proyecto MIPS - Manejo de la tabla de campeonato de futbol
+# Proyecto MIPS - Manejo de tabla de campeonato de futbol
 Aplicación de consola desarrollada con MIPS para manejar datos de tabla del campeonato de fútbol ecuatoriano.
 Proyecto desarrollado para la materia Organización de computadoras de la ESPOL.
 
